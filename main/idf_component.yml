@@ -1,0 +1,12 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/openai: "^0.1.1"
+  chmorgan/esp-file-iterator: "1.0.0"
+  espressif/esp-sr: "1.3.3"
+  espressif/button: ^2
+  espressif/esp-box:
+    version: "2.4.*"
+    require: "no"
+  espressif/esp-box-lite:
+    version: "1.0.*"
+    require: "no"
