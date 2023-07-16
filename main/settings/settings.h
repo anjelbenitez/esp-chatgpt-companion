@@ -9,12 +9,14 @@
 
 #define SSID_SIZE 32
 #define PASSWORD_SIZE 64
-#define KEY_SIZE 64
+#define OPENAI_KEY_SIZE 64
+#define GOOGLE_TTS_KEY_SIZE 64
 
 typedef struct {
     char ssid[SSID_SIZE];         /* SSID of target AP. */
     char password[PASSWORD_SIZE];     /* Password of target AP. */
-    char key[KEY_SIZE];         /* OpenAI key. */
+    char openai_key[OPENAI_KEY_SIZE];         /* OpenAI key. */
+    char google_tts_key[GOOGLE_TTS_KEY_SIZE];   /* Google TTS key. */
 } sys_param_t;
 
 esp_err_t settings_factory_reset(void);

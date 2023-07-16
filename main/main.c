@@ -34,7 +34,7 @@ esp_err_t start_openai(uint8_t *audio, int audio_len)
     static OpenAI_ChatCompletion_t *chatCompletion = NULL;
 
     if (openai == NULL) {
-        openai = OpenAICreate(sys_param->key);
+        openai = OpenAICreate(sys_param->openai_key);
         audioTranscription = openai->audioTranscriptionCreate(openai);
         chatCompletion = openai->chatCreate(openai);
 
