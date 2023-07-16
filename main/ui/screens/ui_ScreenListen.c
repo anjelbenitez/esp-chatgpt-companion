@@ -320,17 +320,17 @@ void ui_ScreenListen_screen_init(void)
     lv_obj_set_style_text_align(ui_LabelReplyQuestion, LV_TEXT_ALIGN_LEFT, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_LabelReplyQuestion, &lv_font_montserrat_16, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-//    ui_ImageRelyBody = lv_img_create(ui_PanelReply);
-//    lv_img_set_src(ui_ImageRelyBody, &ui_img_reply_body_png);
-//    lv_obj_set_width(ui_ImageRelyBody, 52);
-//    lv_obj_set_height(ui_ImageRelyBody, 54);
-//    lv_obj_set_x(ui_ImageRelyBody, -27);
-//    lv_obj_set_y(ui_ImageRelyBody, 0);
-//    lv_obj_set_align(ui_ImageRelyBody, LV_ALIGN_TOP_RIGHT);
-//    lv_obj_add_flag(ui_ImageRelyBody, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
-//    lv_obj_clear_flag(ui_ImageRelyBody, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-//
-//    ui_ImageReplyBodyShadow = lv_img_create(ui_ImageRelyBody);
+    ui_ImageReplyBody = lv_img_create(ui_PanelReply);
+    lv_img_set_src(ui_ImageReplyBody, &ui_speech_bubble);
+    lv_obj_set_width(ui_ImageReplyBody, 69);
+    lv_obj_set_height(ui_ImageReplyBody, 40);
+    lv_obj_set_x(ui_ImageReplyBody, -27);
+    lv_obj_set_y(ui_ImageReplyBody, 7);
+    lv_obj_set_align(ui_ImageReplyBody, LV_ALIGN_TOP_RIGHT);
+    lv_obj_add_flag(ui_ImageReplyBody, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
+    lv_obj_clear_flag(ui_ImageReplyBody, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
+
+//    ui_ImageReplyBodyShadow = lv_img_create(ui_ImageReplyBody);
 //    lv_img_set_src(ui_ImageReplyBodyShadow, &ui_img_reply_small_shadow_png);
 //    lv_obj_set_width(ui_ImageReplyBodyShadow, LV_SIZE_CONTENT);   /// 1
 //    lv_obj_set_height(ui_ImageReplyBodyShadow, LV_SIZE_CONTENT);    /// 1

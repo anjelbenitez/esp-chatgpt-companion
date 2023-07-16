@@ -26,6 +26,7 @@
 #include "app_ui_ctrl.h"
 #include "tts_api.h"
 #include "app_wifi.h"
+//#include "settings.h"
 
 static const char *TAG = "app_audio";
 
@@ -331,10 +332,15 @@ void sr_handler_task(void *pvParam)
             ESP_LOGI(TAG, "ESP_MN_STATE_TIMEOUT");
             audio_record_stop();
             // audio_play_task("/spiffs/echo_en_wake.wav");
-            size_t len;
-            audio_mp3_load("/spiffs/waitPlease.mp3", &len);
-            if (len) {
-                audio_player_play(audio_rx_buffer, len);
+//            size_t len;
+//            audio_mp3_load("/spiffs/waitPlease.mp3", &len);
+//            if (len) {
+//                audio_player_play(audio_rx_buffer, len);
+//            }
+            const char * wait_please = "Hrmmmm, give me a moment to think..";
+            esp_err_t status = text_to_speech_request(wait_please, AUDIO_CODECS_MP3);
+            if (status != ESP_OK) {
+                ESP_LOGE(TAG, "Error making Google API TTS request: %s\n", esp_err_to_name(status));
             }
             uint32_t starttime = esp_log_timestamp();
             ESP_LOGE(TAG, "[Start] start_openai, timestamp: %" PRIu32, starttime);

@@ -12,6 +12,7 @@
 
 #include "ui_helpers.h"
 #include "ui.h"
+#include "parser.h"
 
 #define LABEL_WIFI_TEXT                 "Connecting to Wi-Fi\n"
 #define LABEL_NOT_WIFI_TEXT                 "Not Connected to Wi-Fi\n"
@@ -158,33 +159,18 @@ static void reply_content_show_text(const char *text)
         return;
     }
 
-    char *decode = heap_caps_malloc((strlen(text) + 1), MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
-    assert(decode);
+    char * groomed_text = groom_chatgpt_response(text);
 
-    int j = 0;
-    for (int i = 0; i < strlen(text);) {
-        if ((*(text + i) == '\\') && ((i + 1) < strlen(text)) && (*(text + i + 1) == 'n')) {
-            *(decode + j++) = '\n';
-            i += 2;
-        } else {
-            *(decode + j++) = *(text + i);
-            i += 1;
-        }
-    }
-    *(decode + j) = '\0';
+    ESP_LOGI(TAG, "Groomed chatgpt response: %s", groomed_text);
 
-    ESP_LOGI(TAG, "decode:[%d, %d] %s\r\n", j, strlen(decode), decode);
-
-    lv_label_set_text(ui_LabelReplyContent, decode);
+    lv_label_set_text(ui_LabelReplyContent, groomed_text);
     content_height = lv_obj_get_self_height(ui_LabelReplyContent);
     lv_obj_scroll_to_y(ui_ContainerReplyContent, 0, LV_ANIM_OFF);
     reply_content_get = true;
     lv_timer_resume(scroll_timer_handle);
     ESP_LOGI(TAG, "reply scroll timer start");
 
-    if (decode) {
-        free(decode);
-    }
+    if (groomed_text) free(groomed_text);
 }
 
 void ui_ctrl_label_show_text(ui_ctrl_label_t label, const char *text)
