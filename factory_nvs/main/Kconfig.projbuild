@@ -1,19 +1,24 @@
-menu "Example Configuration"
+menu "Project Configuration"
 
     config ESP_WIFI_SSID
         string "WiFi SSID"
         default "My Network SSID"
         help
-            SSID (network name) for the example to connect to.
+            SSID (network name) for the project to connect to.
     config ESP_WIFI_PASSWORD
         string "WiFi Password"
         default "My Password"
         help
-            WiFi password (WPA or WPA2) for the example to use.
+            WiFi password (WPA or WPA2) for the project to use.
     config OPENAI_API_KEY
         string "OpenAI Key"
         default "sk-xxxxxxxx"
         help
             OpenAI api key for the example to use.
+    config GOOGLE_TTS_API_KEY
+        string "Google TTS Key"
+        default "xxxxxxxx-xxxxxxxx..."
+        help
+            Google Cloud TTS api key for the project to use.
 
 endmenu

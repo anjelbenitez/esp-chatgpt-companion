@@ -19,7 +19,8 @@
 #define NVS_MODIFIED_BIT          BIT0
 #define SSID_SIZE 32
 #define PASSWORD_SIZE 64
-#define KEY_SIZE 64
+#define OPENAI_KEY_SIZE 64
+#define GOOGLE_TTS_KEY_SIZE 64
 
 static const char *TAG = "ChatGPT_NVS";
 
@@ -45,7 +46,8 @@ void app_main(void)
 
     char ssid[SSID_SIZE] = {0};
     char password[PASSWORD_SIZE] = {0};
-    char key[KEY_SIZE] = {0};
+    char openai_key[OPENAI_KEY_SIZE] = {0};
+    char google_tts_key[GOOGLE_TTS_KEY_SIZE] = {0};
 
     s_event_group = xEventGroupCreate();
 
@@ -81,14 +83,24 @@ void app_main(void)
             ESP_LOGI(TAG, "stored password:%s", password);
         }
 
-        buf_len_long = sizeof(key);
-        err = nvs_get_str(my_handle, "ChatGPT_key", key, &buf_len_long);
+        buf_len_long = sizeof(openai_key);
+        err = nvs_get_str(my_handle, "ChatGPT_key", openai_key, &buf_len_long);
         if (err != ESP_OK || buf_len_long == 0) {
             ESP_ERROR_CHECK(nvs_set_str(my_handle, "ChatGPT_key", CONFIG_OPENAI_API_KEY));
             ESP_ERROR_CHECK(nvs_commit(my_handle));
             ESP_LOGI(TAG, "no ChatGPT key, give a init value to key");
         } else {
-            ESP_LOGI(TAG, "stored ChatGPT key:%s", key);
+            ESP_LOGI(TAG, "stored ChatGPT key:%s", openai_key);
+        }
+
+        buf_len_long = sizeof(google_tts_key);
+        err = nvs_get_str(my_handle, "GoogleTTS_key", google_tts_key, &buf_len_long);
+        if (err != ESP_OK || buf_len_long == 0) {
+            ESP_ERROR_CHECK(nvs_set_str(my_handle, "GoogleTTS_key", CONFIG_GOOGLE_TTS_API_KEY));
+            ESP_ERROR_CHECK(nvs_commit(my_handle));
+            ESP_LOGI(TAG, "no Google TTS key, give a init value to key");
+        } else {
+            ESP_LOGI(TAG, "stored Google TTS key:%s", google_tts_key);
         }
     }
     nvs_close(my_handle);
@@ -137,14 +149,23 @@ void app_main(void)
             }
             ESP_LOGD(TAG, "Password", password);
 
-            buf_len_long = sizeof(key);
-            err = nvs_get_str(my_handle, "ChatGPT_key", key, &buf_len_long);
+            buf_len_long = sizeof(openai_key);
+            err = nvs_get_str(my_handle, "ChatGPT_key", openai_key, &buf_len_long);
             if (err != ESP_OK) {
                 ESP_LOGE(TAG, "Failed to read 'ChatGPT_key' from NVS: %s", esp_err_to_name(err));
                 nvs_close(my_handle);
                 return;
             }
-            ESP_LOGD(TAG, "OpenAI Key", key);
+            ESP_LOGD(TAG, "OpenAI Key", openai_key);
+
+            buf_len_long = sizeof(google_tts_key);
+            err = nvs_get_str(my_handle, "GoogleTTS_key", google_tts_key, &buf_len_long);
+            if (err != ESP_OK) {
+                ESP_LOGE(TAG, "Failed to read 'GoogleTTS_key' from NVS: %s", esp_err_to_name(err));
+                nvs_close(my_handle);
+                return;
+            }
+            ESP_LOGD(TAG, "Google TTS Key", google_tts_key);
 
 
             nvs_close(my_handle);

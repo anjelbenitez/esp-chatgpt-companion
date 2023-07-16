@@ -58,18 +58,27 @@ esp_err_t settings_read_parameter_from_nvs(void)
         goto err;
     }
 
-    // Read key
-    len = sizeof(g_sys_param.key);
-    ret = nvs_get_str(my_handle, "ChatGPT_key", g_sys_param.key, &len);
+    // Read OpenAPI key
+    len = sizeof(g_sys_param.openai_key);
+    ret = nvs_get_str(my_handle, "ChatGPT_key", g_sys_param.openai_key, &len);
     if (ret != ESP_OK || len == 0) {
         ESP_LOGI(TAG, "No OpenAI key found");
+        goto err;
+    }
+
+    // Read Google TTS key
+    len = sizeof(g_sys_param.google_tts_key);
+    ret = nvs_get_str(my_handle, "GoogleTTS_key", g_sys_param.google_tts_key, &len);
+    if (ret != ESP_OK || len == 0) {
+        ESP_LOGI(TAG, "No Google TTS key found");
         goto err;
     }
     nvs_close(my_handle);
 
     ESP_LOGI(TAG, "stored ssid:%s", g_sys_param.ssid);
     ESP_LOGI(TAG, "stored password:%s", g_sys_param.password);
-    ESP_LOGI(TAG, "stored OpenAI:%s", g_sys_param.key);
+    ESP_LOGI(TAG, "stored OpenAI:%s", g_sys_param.openai_key);
+    ESP_LOGI(TAG, "stored GoogleTTS:%s", g_sys_param.google_tts_key);
     return ESP_OK;
 
 err:
