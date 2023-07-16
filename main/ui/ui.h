@@ -54,7 +54,7 @@ extern lv_obj_t * ui_PanelGet;
 extern lv_obj_t * ui_PanelReply;
 extern lv_obj_t * ui_ImageReplyBg;
 extern lv_obj_t * ui_LabelReplyQuestion;
-extern lv_obj_t * ui_ImageRelyBody;
+extern lv_obj_t * ui_ImageReplyBody;
 extern lv_obj_t * ui_ImageReplyBodyShadow;
 extern lv_obj_t * ui_ContainerReplyContent;
 extern lv_obj_t * ui_LabelReplyContent;
@@ -95,6 +95,7 @@ extern lv_obj_t * ui____initial_actions0;
 lv_group_t *ui_get_btn_op_group(void);
 
 LV_IMG_DECLARE(ui_eyes_temp);
+LV_IMG_DECLARE(ui_speech_bubble);
 LV_IMG_DECLARE(ui_img_setup_text_bg_png);    // assets\setup_text_bg.png
 LV_IMG_DECLARE(ui_img_reset_icon_png);    // assets\reset_icon.png
 LV_IMG_DECLARE(ui_img_settings_back_png);    // assets\settings_back.png

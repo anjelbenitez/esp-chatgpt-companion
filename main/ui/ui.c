@@ -47,7 +47,7 @@ lv_obj_t * ui_PanelGet;
 lv_obj_t * ui_PanelReply;
 lv_obj_t * ui_ImageReplyBg;
 lv_obj_t * ui_LabelReplyQuestion;
-lv_obj_t * ui_ImageRelyBody;
+lv_obj_t * ui_ImageReplyBody;
 lv_obj_t * ui_ImageReplyBodyShadow;
 lv_obj_t * ui_ContainerReplyContent;
 lv_obj_t * ui_LabelReplyContent;

@@ -6,6 +6,7 @@ SET(SOURCES screens/ui_ScreenSetup.c
     ui.c
     ui_helpers.c
     images/ui_eyes_temp.c
+    images/ui_speech_bubble.c
     images/ui_img_setup_text_bg_png.c
     images/ui_img_reset_icon_png.c
     images/ui_img_settings_back_png.c

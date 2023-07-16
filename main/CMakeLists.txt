@@ -11,6 +11,7 @@ idf_component_register(
     SRCS
         "main.c"
         "tts_api.c"
+        "parser.c"
         ${UI_SRCS}
         ${APP_SRCS}
         ${SETTINGS_SRCS}
